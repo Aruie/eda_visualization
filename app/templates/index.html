@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>My App</title>
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css">
+</head>
+
+
+<body>
+
+    <!-- div with horizontal split -->
+    <div class="flex h-screen">
+        <div class="w-1/4 bg-blue-100 text-white text-center p-2">
+            <img src="/static/img/icon.png" alt="logo" height="200px"></a>
+        </div>
+        <div class="w-3/4 bg-blue-100 text-black text-center p-2">
+            <!-- file list /static/ folder -->
+            <h1 class="text-4xl">Select File</h1>
+
+            {% for fileinfo in file_list %}
+            <div class="flex items-center">
+                <input id="default-radio-1" type="radio" value="" name="default-radio"
+                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                <label for="default-radio-1" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 p-2">{{
+                    fileinfo.name }}</label>
+                <label for="default-radio-1" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">({{
+                    fileinfo.size }} Byte)</label>
+                <label for="default-radio-1" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{
+                    fileinfo.columns }}</label>
+            </div>
+            {% endfor %}
+
+            <div class="flex justify-center">
+                <!-- apply 페이지로 이동 -->
+                <a href="/eda">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded p-2">
+                        Apply
+                    </button>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- 적용 버튼 추가 -->
+
+</body>

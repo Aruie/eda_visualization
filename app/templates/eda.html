@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<!-- <head>
+    <meta charset="utf-8">
+    <title>My App</title>
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css">
+</head>
+ -->
+
+<body>
+
+
+    <!-- Tab -->
+    <div class="tab">
+        {% for col in df.columns %}
+        <button class="tablinks" onclick="openTab(event, {{col}})">{{col}}</button>
+        {% endfor %}
+    </div>
+
+    
+    <embed type="text/html" src="/dash" width="1920" height="600" >
+
+</body>
