@@ -19,12 +19,17 @@ BASE_PATH = Path(__file__).resolve().parent
 TEMPLATES = Jinja2Templates(directory=str(BASE_PATH / "templates"))
 
 
+# 지정 필요
 # file_name = './static/data/titanic.csv'
+# label_column = 'Survived'
 file_name = './static/data/train.csv'
+label_column = 'Y_LABEL'
 
 # df = pd.read_csv(file_name)
 df = pd.read_csv(file_name, nrows=1000)
 column = df.columns[0]
+
+
 
 env_dict = {
     'Column Name': column,
@@ -174,11 +179,11 @@ def make_graph_layout(df, column, env_dict):
 
         if env_dict['Column Type'] == 'Numerical':
             components.append(html.Div([
-                dcc.Graph(figure=px.histogram(df, x=column, marginal='box', color='Y_LABEL',
+                dcc.Graph(figure=px.histogram(df, x=column, marginal='box', color=label_column,
                                             barmode='overlay', nbins=20, title='Original Distribution'),
                         style={'float': 'left', 'background-color': 'rgb(230, 230, 230)', 'width': '50%'}),
 
-                dcc.Graph(figure=px.histogram(df, x='mod', color='Y_LABEL', marginal='box',
+                dcc.Graph(figure=px.histogram(df, x='mod', color=label_column, marginal='box',
                                             barmode='overlay', nbins=20, title='Modified Distribution'),
                         style={'float': 'left', 'background-color': 'rgb(230, 230, 230)', 'width': '50%'}),
             ], style={'float': 'left', 'display': 'flex', 'flex-direction': 'row', 'width': '1024px'})
@@ -186,10 +191,10 @@ def make_graph_layout(df, column, env_dict):
 
         elif env_dict['Column Type'] == 'Categorical':
             components.append(html.Div([
-                dcc.Graph(figure=px.histogram(df, x=column, color='Y_LABEL', barmode='overlay', title='Original Distribution'),
+                dcc.Graph(figure=px.histogram(df, x=column, color=label_column, barmode='overlay', title='Original Distribution'),
                         style={'float': 'left', 'background-color': 'rgb(230, 230, 230)', 'width': '50%'}),
 
-                dcc.Graph(figure=px.histogram(df, x='mod', color='Y_LABEL', barmode='overlay', title='Modified Distribution'),
+                dcc.Graph(figure=px.histogram(df, x='mod', color=label_column, barmode='overlay', title='Modified Distribution'),
                         style={'float': 'left', 'background-color': 'rgb(230, 230, 230)', 'width': '50%'}),
 
             ], style={'float': 'left', 'display': 'flex', 'flex-direction': 'row', 'width': '1024px'})
